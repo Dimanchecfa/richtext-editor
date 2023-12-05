@@ -1,0 +1,43 @@
+/* <button className="editor__toolbar-button" data-command="bold" title="Bold"><b>B</b></button>
+<button className="editor__toolbar-button" data-command="italic" title="Italic"><i>I</i></button>
+<button className="editor__toolbar-button" data-command="underline" title="Underline"><u>U</u></button>
+<button className="editor__toolbar-button" data-command="strikeThrough" title="Strike-through"><strike>S</strike></button>
+<button className="editor__toolbar-button" data-command="justifyLeft" title="Align Left"><i className="fa fa-align-left"></i></button>
+<button className="editor__toolbar-button" data-command="justifyCenter" title="Align Center"><i className="fa fa-align-center"></i></button>
+<button className="editor__toolbar-button" data-command="justifyRight" title="Align Right"><i className="fa fa-align-right"></i></button>
+<button className="editor__toolbar-button" data-command="justifyFull" title="Justify"><i className="fa fa-align-justify"></i></button>
+<button className="editor__toolbar-button" data-command="indent" title="Indent"><i className="fa fa-indent"></i></button>
+<button className="editor__toolbar-button" data-command="outdent" title="Outdent"><i className="fa fa-outdent"></i></button> */
+
+.editor__toolbar {
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+
+.editor__toolbar-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-right: 5px;
+  outline: none;
+  padding: 5px;
+}
+
+.editor__toolbar-button:hover {
+  background-color: #eee;
+}
+
+.editor__toolbar-button:active {
+  background-color: #ddd;
+}
+
+
+
+

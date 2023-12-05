@@ -102,8 +102,6 @@ useEffect(() => {
       }
   };
 
-
-
   editor.addEventListener('drop', handleDrop);
 
   return () => {
@@ -116,7 +114,7 @@ const handleDragStart = (e : any) => {
   e.target.remove(); // Supprimer l'image originale
 };
 
-   useEffect(() => {
+  useEffect(() => {
     const editor = document.querySelector(".editor__content")  as HTMLElement;
     const textarea = document.querySelector(".editor__textarea") as HTMLElement;
     editor.addEventListener("input", () => {
@@ -137,16 +135,14 @@ const handleDragStart = (e : any) => {
                 initialWidth={currentImage?.style.width}
                 initialHeight={currentImage?.style.height}
             />
-        <div className="editor__toolbar">
-            <button className="editor__toolbar--bold" onClick={() => document.execCommand("bold", false, "")}>
-              B
-              </button>
-        </div>
+        <Toolbar />
        
         <div className="editor__content" contentEditable="true"
-        suppressContentEditableWarning={true} // cette ligne permet de supprimer le warning de react qui dit que le contentEditable est une mauvaise pratique
-      
-        >d</div>
+        suppressContentEditableWarning={true} 
+        style={{ resize: "vertical" }}
+        // cette ligne permet de supprimer le warning de react qui dit que le contentEditable est une mauvaise pratique
+        >
+        </div>
         <textarea className="editor__textarea"></textarea>
     </div>
   )
