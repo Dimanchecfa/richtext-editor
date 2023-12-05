@@ -1,0 +1,46 @@
+/* Style du conteneur de l'éditeur */
+.editor-container {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #eee;
+  background-color: white;
+  max-width: 600px; /* ou utilisez % pour une largeur responsive */
+  margin: auto;
+}
+
+.resizable {
+  resize: both;
+  overflow: auto;
+  max-width: 100%; /* Assurez-vous que l'image ne dépasse pas le conteneur */
+}
+
+/* Style de la div contentEditable */
+.editor__content {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  height: 200px; /* Hauteur fixe ou utilisez 'min-height' */
+  overflow-y: auto; /* Pour gérer le défilement */
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif; /* Choisissez une police lisible */
+  font-size: 16px; /* Taille de police appropriée */
+  line-height: 1.5; /* Espacement des lignes pour la lisibilité */
+}
+
+/* Style du textarea caché */
+.editor__textarea {
+  display: none;
+}
+
+/* Si vous avez une barre d'outils */
+.toolbar {
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+}
+
+.toolbar button {
+  margin-right: 5px;
+  cursor: pointer;
+}
