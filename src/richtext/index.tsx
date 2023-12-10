@@ -34,18 +34,16 @@ export default function Editor() {
       let imageRotation = parseInt(currentImage.dataset.rotation);
       switch (rotateDirection) {
         case "right":
-          // verifier si la rotation est un multiple de 360
           if (imageRotation % 360 === 0 && imageRotation !== 0) {
             imageRotation = 0;
             currentImage.dataset.rotation = 0;
           }
-          // verifier si l'image a une rotation de 360
           if (imageRotation === 360 || imageRotation > 360) {
             imageRotation = 0;
             currentImage.dataset.rotation = 0;
           }
+          console.log( currentImage.dataset.rotation)
           currentImage.style.transform = `rotate(${imageRotation + 90}deg)`;
-
           break;
         case "left":
           imageRotation = parseInt(currentImage.dataset.rotation);
@@ -68,79 +66,18 @@ export default function Editor() {
  }
     // setModalOpen(false);
   };
+
   const insertImage = (file: any, editor: any) => {
     const reader = new FileReader();
     reader.onload = (e: any) => {
       const img = document.createElement("img") as any;
-      img.setAttribute("data-dropped", "true");
-      img.addEventListener("dragstart", handleDragStart);
       img.className = "resizable";
       img.src = e.target.result;
       editor.appendChild(img);
     };
     reader.readAsDataURL(file);
   };
-  useEffect(() => {
-    const editor = document.querySelector(".editor__content") as HTMLElement;
 
-    const handleDrop = (e: any) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const dataTransfer = e.dataTransfer;
-      const droppedFiles = dataTransfer.files;
-
-      if (droppedFiles.length > 0) {
-        Array.from(droppedFiles).forEach((file: any) => {
-          if (file.type.startsWith("image/")) {
-            insertImage(file, editor);
-          }
-        });
-      }
-    };
-
-    const handleDragOver = (e: any) => {
-      e.preventDefault();
-    };
-
-    editor.addEventListener("drop", handleDrop);
-    editor.addEventListener("dragover", handleDragOver);
-
-    return () => {
-      editor.removeEventListener("drop", handleDrop);
-      editor.removeEventListener("dragover", handleDragOver);
-    };
-  }, []);
-
-  useEffect(() => {
-    const editor = document.querySelector(".editor__content") as HTMLElement;
-
-    const handleDrop = (e: any) => {
-      e.preventDefault();
-
-      // Récupérer le HTML de l'image déplacée
-      const imageHTML = e.dataTransfer.getData("text/plain");
-      if (imageHTML) {
-        // Insérer l'image à l'endroit du dépôt
-        const range = document.caretRangeFromPoint(e.clientX, e.clientY);
-        if (range) {
-          range.insertNode(
-            document.createRange().createContextualFragment(imageHTML)
-          );
-        }
-      }
-    };
-
-    editor.addEventListener("drop", handleDrop);
-
-    return () => {
-      editor.removeEventListener("drop", handleDrop);
-    };
-  }, []);
-
-  const handleDragStart = (e: any) => {
-    e.dataTransfer.setData("text/plain", e.target.outerHTML); // Stocker le HTML de l'image
-    e.target.remove(); // Supprimer l'image originale
-  };
 
   useEffect(() => {
     const editor = document.querySelector(".editor__content") as HTMLElement;
@@ -151,41 +88,9 @@ export default function Editor() {
     textarea.addEventListener("input", () => {
       editor.innerHTML = textarea.innerHTML;
     });
-    // gerer highlight.js
     hljs.highlightAll();
-
-    // mettre à jour imageRect
-if(currentImage) {
-  setImageRect(currentImage?.getBoundingClientRect());
-  currentImage.style.outline = "2px solid #00bcd4";
-  currentImage.style.outlineOffset = "5px";
-      setImageRect(currentImage.getBoundingClientRect());
-      setModalOpen(true);
-}
   }, []);
 
-  useEffect(() => {
-    if (!currentImage) return;
-  
-    // Création de l'observateur
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes') {
-          setImageRect(currentImage.getBoundingClientRect());
-        }
-      });
-    });
-  
-    // Configuration de l'observateur
-    observer.observe(currentImage, {
-      attributes: true,
-      attributeFilter: ['style']
-    });
-  
-    // Nettoyage
-    return () => observer.disconnect();
-  }, [currentImage]);
-  
 
   return (
     <div className="editor-container">

@@ -21,17 +21,14 @@ function ImageResizer({
   const [height, setHeight] = useState<any>(initialHeight);
   const [style, setStyle] = useState<any>({});
 
-
   const handleClick = (toolbar: any) => {
     if (toolbar.command === "rotateRight") {
-      onApply(width, height , "right");
+      onApply(width, height, "right");
       setImageRect(currentImage?.getBoundingClientRect());
-        return;
     }
     if (toolbar.command === "rotateLeft") {
-      onApply(width, height , "left");
-        setImageRect(currentImage?.getBoundingClientRect());
-        return;
+      onApply(width, height, "left");
+      setImageRect(currentImage?.getBoundingClientRect());
     }
     document.execCommand(toolbar.command, false, "");
   };
@@ -44,10 +41,10 @@ function ImageResizer({
       icon: () => <BiAlignJustify width={14} height={14} />,
     },
     {
-        key : "C",
-        title : "Center",
-        command : "justifyCenter",
-        icon : () => <BiAlignJustify width={14} height={14} />
+      key: "C",
+      title: "Center",
+      command: "justifyCenter",
+      icon: () => <BiAlignJustify width={14} height={14} />,
     },
     {
       key: "R",
@@ -73,6 +70,7 @@ function ImageResizer({
   useEffect(() => {
     if (!currentImage) return;
     const imageRect = currentImage.getBoundingClientRect();
+    console.log(imageRect);
     setImageRect(imageRect);
     setWidth(currentImage.width);
     setHeight(currentImage.height);
@@ -80,7 +78,7 @@ function ImageResizer({
       top: `${imageRect.top - 50}px`,
       left: `${imageRect.left}px`,
     });
-  },[currentImage]);
+  }, [currentImage]);
 
   return (
     isOpen && (

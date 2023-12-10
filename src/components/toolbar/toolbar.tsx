@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
 import cn from "classnames";
-import { BiAlignJustify, BiAlignRight, BiBold, BiCode, BiFile, BiFullscreen, BiImageAdd, BiItalic, BiLandscape, BiListOl, BiListUl, BiParagraph, BiRedo, BiRuler, BiStrikethrough, BiUnderline, BiUndo } from "react-icons/bi";
+import { BiAlignJustify, BiAlignRight, BiBold, BiCode, BiFile, BiFullscreen, BiImageAdd, BiItalic, BiLandscape, BiListOl, BiListUl, BiParagraph, BiRedo, BiRuler, BiStrikethrough, BiTable, BiUnderline, BiUndo } from "react-icons/bi";
 import { FileIcon } from "../icons";
+import GridSelector from "./grid-selector";
+import TableTool from "./table-tool";
 
 
 
@@ -149,7 +151,7 @@ export default function Toolbar({ insertImage } : any )  {
   const handleDragEnd = () => {
     setDraggedIndex(null);
   };
-  
+
 
   const handleClick = (toolbar: any) => {
     return () => {
@@ -204,8 +206,9 @@ export default function Toolbar({ insertImage } : any )  {
   }
 
 
-
-
+  const handleCreateTable = () => {
+    
+  };  
   return (
     <div className="editor__toolbar">
       <ToolbarButton
@@ -245,6 +248,10 @@ export default function Toolbar({ insertImage } : any )  {
         <option value="h1">Heading 1</option>
         <option value="h2">Heading 2</option>
       </select>
+      <TableTool activeTools={activeTools} setActiveTools={setActiveTools}/>
+
     </div>
   );
 }
+
+

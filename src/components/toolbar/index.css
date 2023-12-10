@@ -43,7 +43,7 @@
 }
 
 .editor__toolbar-button.active {
-  background-color: #ddd;
+  background-color: rgb(23, 184, 224);
 }
 FFQ
 .editor__toolbar-button.dragged {
@@ -89,4 +89,116 @@ FFQ
   padding: 10px;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+
+
+
+.grid-selector {
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 10px 0;
+  user-select: none;
+  position: absolute;
+  background-color: white;
+  z-index: 1000; /* Assurez-vous qu'elle est au-dessus des autres éléments */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grid-row {
+  display: flex;
+}
+
+.grid-cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ddd;
+  margin: 1px;
+  background-color: #f8f8f8;
+  transition: background-color 0.3s;
+}
+
+.grid-cell:hover, .grid-cell.highlighted {
+  background-color: #9ecae1;
+  cursor: pointer;
+}
+
+/* Optionnel : Ajouter un effet visuel lors du clic sur un carreau */
+.grid-cell:active {
+  background-color: #6baed6;
+}
+
+
+
+.table-with-resize {
+  border: 2px solid blue;
+  position: relative;
+}
+
+.resize-handle {
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  position: absolute;
+}
+
+.top-left { top: -5px; left: -5px; cursor: nwse-resize; }
+.top-right { top: -5px; right: -5px; cursor: nesw-resize; }
+.bottom-left { bottom: -5px; left: -5px; cursor: nesw-resize; }
+.bottom-right { bottom: -5px; right: -5px; cursor: nwse-resize; }
+.table-cell {
+  border: 1px solid black;
+  position: relative;
+}
+
+.table-cell::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #ccc; /* Bordure droite saisissable */
+  border-bottom: 2px solid #ccc; /* Bordure inférieure saisissable */
+  cursor: nwse-resize; /* Curseur pour redimensionnement */
+}
+
+.table-cell {
+  border: 1px solid black;
+  position: relative;
+  /* autres styles nécessaires */
+}
+
+.resize-handle-cell {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 5px;
+  height: 5px;
+  background: blue;
+  cursor: se-resize;
+}
+
+
+.resize-handle-cell:hover {
+  cursor: se-resize;
+}
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+  /* background-color: #f0f0f0;  */
+  /* ou toute autre couleur de votre choix */
+}
+
+.resize-handle-horizontal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px; /* largeur de la poignée */
+  height: 100%;
+  cursor: ew-resize; /* curseur pour redimensionnement horizontal */
 }
